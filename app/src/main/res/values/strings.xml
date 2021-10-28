@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">NewsValley</string>
+    <string name="explore_news">Explore News</string>
+    <string name="saved_news">Saved News</string>
+    <string name="search_news">Search News</string>
 </resources>
