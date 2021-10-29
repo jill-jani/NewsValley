@@ -1,6 +1,6 @@
 package com.example.newsvalley.api
 
-import com.example.newsvalley.NewsResponse
+import com.example.newsvalley.models.NewsResponse
 import com.example.newsvalley.util.Constants.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
