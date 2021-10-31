@@ -16,7 +16,7 @@ class NewsViewModel(
     val topHeadlinesPage = 1
 
     init {
-        getTopHeadlines("us")
+        getTopHeadlines("in")
     }
 
     fun getTopHeadlines(countryCode: String) = viewModelScope.launch {
