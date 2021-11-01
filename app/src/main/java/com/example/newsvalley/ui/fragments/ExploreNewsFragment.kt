@@ -3,8 +3,10 @@ package com.example.newsvalley.ui.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsvalley.R
 import com.example.newsvalley.adapters.NewsAdapter
@@ -23,7 +25,17 @@ class ExploreNewsFragment: Fragment(R.layout.fragment_explore_news) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
         setUpRecyclerView()
+        Log.d("Explore News Fragment","Item clicked")
 
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_exploreNewsFragment_to_articleFragment,
+                bundle
+            )
+        }
         viewModel.topHeadlines.observe(viewLifecycleOwner, Observer { response ->
             when(response) {
                 is Resources.Success -> {
