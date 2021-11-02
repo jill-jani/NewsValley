@@ -14,10 +14,12 @@ class NewsViewModel(
     val newsRepository: NewsRepository
 ): ViewModel() {
     val topHeadlines: MutableLiveData<Resources<NewsResponse>> = MutableLiveData()
-    val topHeadlinesPage = 1
+    var topHeadlinesPage = 1
+    var topHeadlinesResponse: NewsResponse? = null
 
     val searchResult: MutableLiveData<Resources<NewsResponse>> = MutableLiveData()
-    val searchResultPage = 1
+    var searchResultPage = 1
+    var searchResultResponse: NewsResponse? = null
 
     init {
         getTopHeadlines("in")
@@ -38,7 +40,15 @@ class NewsViewModel(
     private fun handleTopHeadlinesResponse(response: Response<NewsResponse>): Resources<NewsResponse> {
         if(response.isSuccessful) {
             response.body()?.let { resultResponse ->
-                return Resources.Success(resultResponse)
+                topHeadlinesPage++
+                if(topHeadlinesResponse == null) {
+                    topHeadlinesResponse = resultResponse
+                } else {
+                    val oldArticles = topHeadlinesResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resources.Success(topHeadlinesResponse ?: resultResponse)
             }
         }
         return Resources.Error(response.message())
@@ -47,7 +57,15 @@ class NewsViewModel(
     private fun handleSearchNewsResponse(response: Response<NewsResponse>): Resources<NewsResponse> {
         if(response.isSuccessful) {
             response.body()?.let { resultResponse ->
-                return Resources.Success(resultResponse)
+                searchResultPage++
+                if(searchResultResponse == null) {
+                    searchResultResponse = resultResponse
+                } else {
+                    val oldArticles = searchResultResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resources.Success(searchResultResponse ?: resultResponse)
             }
         }
         return Resources.Error(response.message())

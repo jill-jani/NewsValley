@@ -25,7 +25,7 @@ class ArticleFragment: Fragment(R.layout.fragment_article) {
 
         webView.apply {
             webViewClient = WebViewClient()
-            loadUrl(article.url)
+            article.url?.let { loadUrl(it) }
             Log.d("Article Fragment","request sent to: ${article.url}")
         }
         fab.setOnClickListener {
