@@ -3,6 +3,7 @@ package com.example.newsvalley.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.newsvalley.models.Article
 import com.example.newsvalley.models.NewsResponse
 import com.example.newsvalley.repository.NewsRepository
 import com.example.newsvalley.util.Resources
@@ -51,4 +52,14 @@ class NewsViewModel(
         }
         return Resources.Error(response.message())
     }
+
+    fun saveArticle(article: Article) = viewModelScope.launch {
+        newsRepository.upsertArticle(article)
+    }
+
+    fun deleteArticle(article: Article) = viewModelScope.launch {
+        newsRepository.deleteArticle(article)
+    }
+
+    fun getSavedArticles() = newsRepository.getSavedNews()
 }

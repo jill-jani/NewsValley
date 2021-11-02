@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.newsvalley.R
 import com.example.newsvalley.ui.MainActivity
 import com.example.newsvalley.ui.NewsViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_article.*
 
 class ArticleFragment: Fragment(R.layout.fragment_article) {
@@ -26,6 +27,10 @@ class ArticleFragment: Fragment(R.layout.fragment_article) {
             webViewClient = WebViewClient()
             loadUrl(article.url)
             Log.d("Article Fragment","request sent to: ${article.url}")
+        }
+        fab.setOnClickListener {
+            viewModel.saveArticle(article)
+            Snackbar.make(view,"Article saved to favourites",Snackbar.LENGTH_SHORT).show()
         }
     }
 }
