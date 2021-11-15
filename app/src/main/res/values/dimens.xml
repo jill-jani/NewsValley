@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="search_query_margin_horizontal">18dp</dimen>
+    <dimen name="search_query_margin_vertical">10dp</dimen>
+    <dimen name="search_query_padding">4dp</dimen>
+    <dimen name="recycler_view_margin">15dp</dimen>
+    <dimen name="recycler_view_padding">50dp</dimen>
+    <dimen name="article_item_margin">4dp</dimen>
+</resources>
