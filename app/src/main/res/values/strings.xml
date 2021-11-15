@@ -4,4 +4,10 @@
     <string name="saved_news">Saved News</string>
     <string name="search_news">Search News</string>
     <string name="search">Search query</string>
+    <string name="article_image_description">Article image</string>
+    <string name="article_source">SOURCE</string>
+    <string name="article_title">TITLE</string>
+    <string name="article_description">DESCRIPTION</string>
+    <string name="article_published_at">PUBLISHED AT</string>
+    <string name="add_to_favourites">Add to favourites</string>
 </resources>
